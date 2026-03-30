@@ -49,6 +49,3 @@ npm run dev
 ```
 Open the link it gives you (usually `http://localhost:5173`) in your browser and enjoy!
 
-## 🌍 Hosting Online
-
-This app is fully ready to be deployed on **Vercel**. Just import your GitHub repository to Vercel and make sure to add the `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in Vercel's Environment Variables settings before deploying!
