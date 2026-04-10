@@ -3,7 +3,7 @@ import { useSnippets } from './hooks/useSnippets';
 import Sidebar from './components/Sidebar';
 import SnippetEditor from './components/SnippetEditor';
 import SnippetViewer from './components/SnippetViewer';
-import { TerminalSquare } from 'lucide-react';
+import { TerminalSquare, ArrowLeft } from 'lucide-react';
 import './App.css';
 
 function App() {
@@ -38,6 +38,12 @@ function App() {
     }
   };
 
+  const handleBack = () => {
+    setCurrentId(null);
+    setIsCreating(false);
+    setIsEditing(false);
+  };
+
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this snippet?')) {
       deleteSnippet(id);
@@ -50,8 +56,10 @@ function App() {
     }
   };
 
+  const isDetailView = activeSnippet || isCreating || isEditing;
+
   return (
-    <div className="app-container">
+    <div className={`app-container ${isDetailView ? 'detail-active' : 'list-active'}`}>
       <Sidebar 
         snippets={snippets} 
         currentId={currentId}
@@ -72,12 +80,14 @@ function App() {
             isCreating={isCreating}
             onSave={handleSave}
             onCancel={handleCancel}
+            onBack={handleBack}
           />
         ) : activeSnippet ? (
           <SnippetViewer 
             snippet={activeSnippet} 
             onEdit={() => setIsEditing(true)}
             onDelete={handleDelete}
+            onBack={handleBack}
           />
         ) : (
           <div className="placeholder-view">

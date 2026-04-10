@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Edit2, Trash2, Copy, Check } from 'lucide-react';
+import { Edit2, Trash2, Copy, Check, ArrowLeft } from 'lucide-react';
 
-export default function SnippetViewer({ snippet, onEdit, onDelete }) {
+export default function SnippetViewer({ snippet, onEdit, onDelete, onBack }) {
   const [copied, setCopied] = useState(false);
 
   if (!snippet) return null;
@@ -23,6 +23,9 @@ export default function SnippetViewer({ snippet, onEdit, onDelete }) {
       {/* Top Header */}
       <div className="view-header">
         <div className="view-title-group">
+          <button className="btn btn-icon mobile-back-btn" onClick={onBack}>
+            <ArrowLeft size={20} />
+          </button>
           <h1 className="view-title">{snippet.title}</h1>
           <span className={`badge lang-${snippet.language}`}>
             {snippet.language}

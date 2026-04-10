@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Save, X } from 'lucide-react';
+import { Save, X, ArrowLeft } from 'lucide-react';
 
 export default function SnippetEditor({ 
   snippet, 
   onSave, 
   onCancel,
-  isCreating 
+  isCreating,
+  onBack
 }) {
   const [formData, setFormData] = useState({
     title: '',
@@ -55,7 +56,10 @@ export default function SnippetEditor({
       <div className="view-body" style={{ padding: '0' }}>
         <form className="editor-form" onSubmit={handleSubmit}>
           
-          <h2 style={{ fontSize: '24px', fontWeight: '600' }}>
+          <h2 style={{ fontSize: '24px', fontWeight: '600', display: 'flex', alignItems: 'center' }}>
+            <button type="button" className="btn btn-icon mobile-back-btn" onClick={onBack} style={{ marginRight: '8px' }}>
+              <ArrowLeft size={20} />
+            </button>
             {isCreating ? 'Create New Snippet' : 'Edit Snippet'}
           </h2>
 
